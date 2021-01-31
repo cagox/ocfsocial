@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/cagox/ocfsocial/app/config"
+	"github.com/cagox/ocfsocial/app/util/config"
 	"log"
 	"os"
 )

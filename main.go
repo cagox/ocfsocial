@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/cagox/ocfsocial/app/config"
-	"github.com/cagox/ocfsocial/app/database"
-	"github.com/cagox/ocfsocial/app/logger"
 	"github.com/cagox/ocfsocial/app/routes"
+	"github.com/cagox/ocfsocial/app/util/config"
+	"github.com/cagox/ocfsocial/app/util/database"
+	"github.com/cagox/ocfsocial/app/util/logger"
 	"log"
 	"net/http"
 )

@@ -5,7 +5,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"github.com/cagox/ocfsocial/app/config"
+	"github.com/cagox/ocfsocial/app/util/config"
 )
 
 //DialMongoSession starts the main mongo session.

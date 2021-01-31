@@ -2,7 +2,7 @@ package routes
 
 import (
 	"fmt"
-	"github.com/cagox/ocfsocial/app/config"
+	"github.com/cagox/ocfsocial/app/util/config"
 	"net/http"
 )
 
