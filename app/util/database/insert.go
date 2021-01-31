@@ -14,7 +14,7 @@ func InsertObject(collectionName string, object interface{}) error {
 	//TODO: Once this is working, add some error handling.
 	collection := config.Config.MongoClient.Database(config.Config.DatabaseName).Collection(collectionName)
 
-	_, err := collection.InsertOne(config.Config.MongoContext, &object)
+	_, err := collection.InsertOne(config.Config.MongoContext, object)
 	if err != nil {
 		return err
 	}
