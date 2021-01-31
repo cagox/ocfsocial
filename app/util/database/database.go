@@ -2,8 +2,10 @@ package database
 
 import (
 	"context"
+	"fmt"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"log"
 
 	"github.com/cagox/ocfsocial/app/util/config"
 )
@@ -25,6 +27,13 @@ func DialMongoSession() {
 	}
 
 	config.Config.MongoClient = client
+
+	err = client.Ping(config.Config.MongoContext, nil)
+	if err != nil {
+		fmt.Println("Database didn't connect at all.")
+		log.Fatal(err)
+	}
+
 }
 
 func buildContext() context.Context {

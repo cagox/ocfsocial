@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/cagox/ocfsocial/app/routes"
 	"github.com/cagox/ocfsocial/app/util/config"
 	"github.com/cagox/ocfsocial/app/util/database"
@@ -24,10 +23,6 @@ func main() {
 	routes.Routes()
 
 	myValue := TestStruct{"Jim", "I like this."}
-
-	fmt.Println("Attemptin to insert ", myValue, " into the testobjects collection on "+config.Config.DatabaseName)
-
-	fmt.Printf("Config Struct: %+v\n", config.Config)
 
 	err := database.InsertObject("testobjects", myValue)
 	if err != nil {
