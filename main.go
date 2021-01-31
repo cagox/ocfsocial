@@ -17,5 +17,5 @@ func main() {
 
 	routes.Routes()
 
-	log.Fatal(http.ListenAndServe(":8989", config.Config.Router))
+	log.Fatal(http.ListenAndServe("localhost:8989", config.Config.Router))
 }
