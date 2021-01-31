@@ -24,7 +24,7 @@ func main() {
 
 	routes.Routes()
 
-	myValue := TestStruct{}
+	var myValue *TestStruct
 	database.GetOne("testobjects", bson.D{{"name", "Jim"}}, myValue)
 	fmt.Printf("%+v", myValue)
 
