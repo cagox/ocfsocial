@@ -27,9 +27,10 @@ func main() {
 
 	fmt.Println("Attemptin to insert ", myValue, " into the testobjects collection on "+config.Config.DatabaseName)
 
+	fmt.Printf("Config Struct: %+v\n", config.Config)
+
 	err := database.InsertObject("testobjects", myValue)
 	if err != nil {
-		fmt.Println("Error: ", err)
 		panic(err)
 	}
 
