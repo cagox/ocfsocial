@@ -6,6 +6,7 @@ import (
 	"github.com/cagox/ocfsocial/app/util/config"
 	"github.com/cagox/ocfsocial/app/util/database"
 	"github.com/cagox/ocfsocial/app/util/logger"
+	"go.mongodb.org/mongo-driver/bson"
 	"log"
 	"net/http"
 )
@@ -23,13 +24,9 @@ func main() {
 
 	routes.Routes()
 
-	myValue := TestStruct{"Jim", "I like this."}
-
-	err := database.InsertObject("testobjects", myValue)
-	if err != nil {
-		fmt.Println("Didn't insert test object.")
-		panic(err)
-	}
+	myValue := TestStruct{}
+	database.GetOne("testobjects", bson.D{{"name", "Jim"}}, myValue)
+	fmt.Printf("%+v", myValue)
 
 	log.Fatal(http.ListenAndServe("localhost:8989", config.Config.Router))
 }
