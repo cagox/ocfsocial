@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/cagox/ocfsocial/app/routes"
 	"github.com/cagox/ocfsocial/app/util/config"
 	"github.com/cagox/ocfsocial/app/util/database"
@@ -26,6 +27,7 @@ func main() {
 
 	err := database.InsertObject("testobjects", myValue)
 	if err != nil {
+		fmt.Println("Didn't insert test object.")
 		panic(err)
 	}
 
