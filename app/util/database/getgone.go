@@ -11,7 +11,7 @@ import (
 func GetOne(collectionName string, searchQuery bson.D, recipient interface{}) {
 	collection := config.Config.MongoClient.Database(config.Config.DatabaseName).Collection(collectionName)
 
-	err := collection.FindOne(config.Config.MongoContext, searchQuery).Decode(recipient)
+	err := collection.FindOne(config.Config.MongoContext, searchQuery).Decode(&recipient)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			recipient = nil
