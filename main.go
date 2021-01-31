@@ -27,7 +27,11 @@ func main() {
 
 	fmt.Println("Attemptin to insert ", myValue, " into the testobjects collection on "+config.Config.DatabaseName)
 
-	database.InsertObject("testobjects", myValue)
+	err := database.InsertObject("testobjects", myValue)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		panic(err)
+	}
 
 	log.Fatal(http.ListenAndServe("localhost:8989", config.Config.Router))
 }
