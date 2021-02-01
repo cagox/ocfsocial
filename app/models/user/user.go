@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+var Version = 1
+
 //User is meant to hold user related information in the Database.
 type User struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`

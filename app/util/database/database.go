@@ -1,46 +1,33 @@
 package database
 
 import (
-	"context"
-	"fmt"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
+	"database/sql"
+	"time"
+
+	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/cagox/ocfsocial/app/util/config"
 )
 
-//DialMongoSession starts the main mongo session.
-func DialMongoSession() {
-	credential := options.Credential{
-		AuthMechanism: "SCRAM-SHA-1",
-		Username:      config.Config.DatabaseUserName,
-		Password:      config.Config.DatabasePassword,
-		AuthSource:    config.Config.DatabaseName,
-	}
-
-	clientOpts := options.Client().ApplyURI(config.Config.DatabaseServerURL).SetAuth(credential)
-
-	client, err := mongo.Connect(config.Config.MongoContext, clientOpts)
+func OpenDatabase() {
+	db, err := sql.Open("mysql", databaseURI())
 	if err != nil {
 		panic(err)
 	}
 
-	config.Config.MongoClient = client
+	db.SetConnMaxLifetime(time.Minute * 3)
+	db.SetMaxOpenConns(10)
+	db.SetMaxIdleConns(10)
 
-	err = client.Ping(config.Config.MongoContext, nil)
-	if err != nil {
-		fmt.Println("Database didn't connect at all.")
-		log.Fatal(err)
-	}
-
+	config.Config.Database = db
 }
 
-func buildContext() context.Context {
-	return context.TODO()
+func CloseDatabase() {
+	config.Config.Database.Close()
 }
 
-func init() {
-	config.Config.MongoContext = buildContext()
-
+//Here we just build the URI and return it. By using a function, we can change it in one place later.
+func databaseURI() string {
+	uriString := config.Config.DatabaseUserName + ":" + config.Config.DatabasePassword + "@/" + config.Config.DatabaseName + "?" + config.Config.DatabaseOptions
+	return uriString
 }

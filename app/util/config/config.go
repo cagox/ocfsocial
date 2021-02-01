@@ -1,10 +1,9 @@
 package config
 
 import (
-	"context"
+	"database/sql"
 	CagoxConfig "github.com/cagox/config"
 	"github.com/gorilla/mux"
-	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"os"
 )
@@ -19,11 +18,12 @@ type OCFConfigStruct struct {
 	LogPath  string
 
 	//The items below are not in the JSON file.
-	Router       *mux.Router
-	Logger       *log.Logger
-	MongoClient  *mongo.Client
-	MongoContext context.Context
-	LogFile      *os.File
+	Router  *mux.Router
+	Logger  *log.Logger
+	LogFile *os.File
+
+	//Database Related
+	Database *sql.DB
 }
 
 func init() {
