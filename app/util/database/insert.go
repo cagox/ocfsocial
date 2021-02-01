@@ -20,3 +20,5 @@ func InsertObject(collectionName string, object interface{}) error {
 	}
 	return nil
 }
+
+//TODO: Formalize this a bit once I get GetOne working. Generics will make this easier.
